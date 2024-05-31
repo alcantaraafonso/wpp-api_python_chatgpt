@@ -1,4 +1,5 @@
 from flask import Flask, request
+import util
 
 app = Flask(__name__)
 
@@ -23,7 +24,20 @@ def VerifyToken():
 
 @app.route('/whatsapp', methods=['POST'])
 def receivedMessage():
-    return "message received"
+    try:
+        body = request.get_json()
+        entry = (body["entry"])[0]
+        changes = (entry["changes"])[0]
+        value = changes["value"]
+        message = (value["messages"])[0]
+        number = message["from"]
+
+        text = util.get_text_user(message)
+        print(f'{text=}')
+        # deve SEMPRE retornar EVENT_RECEIVED
+        return "EVENT_RECEIVED"
+    except:
+        return "EVENT_RECEIVED"
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8000, debug=True)
