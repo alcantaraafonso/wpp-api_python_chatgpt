@@ -38,3 +38,10 @@ O resultado da chamada é:
 }
 ```
 Para mais informações sobre as API do Whatsapp Cloud, acesse: https://www.postman.com/meta/workspace/whatsapp-business-platform/collection/13382743-84d01ff8-4253-4720-b454-af661f36acc2
+
+### Formatação de mensagens
+```
+*negrito* 
+_itálico_ 
+~riscado/tachado~ 
+```
