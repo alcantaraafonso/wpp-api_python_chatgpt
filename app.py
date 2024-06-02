@@ -9,7 +9,7 @@ def index():
     return "Welcome"
 
 @app.route('/whatsapp', methods=['GET'])
-def VerifyToken():
+def Verify_token():
     try:
         accessToken = "BEGA98721NHAWHAT345SAPP"
         token = request.args.get('hub.verify_token')
@@ -24,7 +24,7 @@ def VerifyToken():
 
 
 @app.route('/whatsapp', methods=['POST'])
-def receivedMessage():
+def received_message():
     try:
         body = request.get_json()
         entry = body["entry"][0]
@@ -43,7 +43,15 @@ def receivedMessage():
     except:
         return "EVENT_RECEIVED"
 
-# TODO alterar o IF pra usar o type
+@app.route('/healthcheck', methods=['GET'])
+def health_check():
+    try:
+        return "", 204
+    
+    except:
+        return "", 500
+
+
 def generate_message(message_type, text, number):
     if message_type == 'text':
         data = util.text_message(number, text)

@@ -5,7 +5,13 @@ Este projeto é uma PoC para mostrar o funcionamento de uma aplicação em pytho
 Criar uma aplicação no Meta for Developers e gerar um token permanente
 
 ## Execução 
-Docker?
+A aplicação roda sobre um container docker e para executá-la, rode:
+
+```
+docker build -t wppapi_python .
+
+docker run -dp 8000:8000 --name wppapi_python wppapi_python
+```
 
 ## deploy
 AWS?

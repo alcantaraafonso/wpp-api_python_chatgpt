@@ -109,3 +109,86 @@ def location_message(number):
                 "address": "Citizenship Square 26, Santiago de Chile. Metro La Moneda, Santiago, Región Metropolitana, Chile"
             }
         }
+
+def buttons_message(number):
+    return {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": number,
+            "type": "interactive",
+            "interactive": {
+                "type": "button",
+                "body": {
+                    "text": "Escolha"
+                },
+                "action": {
+                    "buttons": [
+                        {
+                            "type": "reply",
+                            "reply": {
+                                "id": "001",
+                                "title": "Sim"
+                            }
+                        },
+                        {
+                            "type": "reply",
+                            "reply": {
+                                "id": "002",
+                                "title": "Não"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+
+def list_message(number):
+    return {
+            "messaging_product": "whatsapp",
+            "to": number,
+            "type": "interactive",
+            "interactive": {
+                "type": "list",
+                "body": {
+                    "text": "✅ I have these options"
+                },
+                "footer": {
+                    "text": "Select an option"
+                },
+                "action": {
+                    "button": "See options",
+                    "sections": [
+                        {
+                            "title": "Buy and sell products",
+                            "rows": [
+                                {
+                                    "id": "main-buy",
+                                    "title": "Buy",
+                                    "description": "Buy the best product your home"
+                                },
+                                {
+                                    "id": "main-sell",
+                                    "title": "Sell",
+                                    "description": "Sell your products"
+                                }
+                            ]
+                        },
+                        {
+                            "title": "📍center of attention",
+                            "rows": [
+                                {
+                                    "id": "main-agency",
+                                    "title": "Agency",
+                                    "description": "Your can visit our agency"
+                                },
+                                {
+                                    "id": "main-contact",
+                                    "title": "Contact center",
+                                    "description": "One of our agents will assist you"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
