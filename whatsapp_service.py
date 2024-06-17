@@ -1,10 +1,11 @@
 import requests
 import json
+from util_log import get_logger
 
 def send_message_whatsapp(data):
     try:
         token = "EAAGdQac3cVEBO8DdN9n8a6fYorXjAMybVgC5Vf5WC6fXkyvxsq2R6xhCc7M4fb0QmfzybZCXWvXNsPjpNqsTOuS7ggJLUHdqHo3wba18SKzZC5REdriKROsGpiZAaibsUOy0ZCyq0YZBuCetFCh1vks6k8ZCZAJmJQrJKVdqRhVfxkvPBIoXNdbj0UOOZAxesrJm"
-        api_url = "https://graph.facebook.com/v19.0/272679455939616/messages"
+        api_url = "https://graph.facebook.com/v20.0/272679455939616/messages"
 
         headers = {
             "Content-Type": "application/json",
@@ -17,5 +18,6 @@ def send_message_whatsapp(data):
         
         return False
     except Exception as exception:
-        print(exception)
+        get_logger().error("whatsapp_service.send_message_whatsapp")
+        get_logger().error(exception)
         return False

@@ -1,0 +1,26 @@
+{
+    "data": [
+        {
+            "verified_name": "Test Number",
+            "code_verification_status": "NOT_VERIFIED",
+            "display_phone_number": "+1 555-613-4176",
+            "quality_rating": "GREEN",
+            "platform_type": "CLOUD_API",
+            "throughput": {
+                "level": "STANDARD"
+            },
+            "webhook_configuration": {
+                "whatsapp_business_account": "https:\/\/chatwoot-production-000c.up.railway.app\/webhooks\/whatsapp\/+15556134176",
+                "application": "https:\/\/wpp.beganinha.com.br\/whatsapp"
+            },
+            "id": "272679455939616"
+        }
+    ],
+    "paging": {
+        "cursors": {
+            "before": "QVFIUi1pemlOOFBxcmN1R3JPek1obmZAjd3BFc0RoY2pkRU1HMXJvYXFUc3BrNTJkdHE5cU92SXBHeERFQzNiQXpHVGYZD",
+            "after": "QVFIUi1pemlOOFBxcmN1R3JPek1obmZAjd3BFc0RoY2pkRU1HMXJvYXFUc3BrNTJkdHE5cU92SXBHeERFQzNiQXpHVGYZD"
+        }
+    }
+}
+

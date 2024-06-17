@@ -10,12 +10,11 @@ def get_interactive_object(message):
     elif type_interactive == 'list_reply':
         return interactive_object['list_reply']['title']
 
-def get_user_message(message):
-    type_message = message['type']
+def get_user_message(message_type, message):
 
-    if type_message == 'text':
+    if message_type == 'text':
         return get_text_message(message)
-    elif type_message == 'interactive':
+    elif message_type == 'interactive':
         return get_interactive_object(message)
 
     return 'sem mensagem'
