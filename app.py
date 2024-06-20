@@ -28,31 +28,33 @@ def verify_token():
         get_logger().error(exception)
         return "", 400
 
-
 @app.route('/whatsapp', methods=['POST'])
 def received_message():
-    try:
+    try: 
+        # get_logger().info('entreik no received_nessage')
+
         body = request.get_json()
-        entry = body["entry"][0]
-        changes = entry["changes"][0]
+        entry = (body["entry"])[0]
+        changes = (entry["changes"])[0]
         value = changes["value"]
-        messages = value["messages"][0]
+        messages = (value["messages"])[0]
         number = messages["from"]
         message_type = messages["type"]
-
         message_user = util.get_user_message(message_type, messages)
-        get_logger().info(f'{message_user=}')
-        if generate_message(message_user, number):
-            get_logger().info(f'{message_user=}')
-            # deve SEMPRE retornar EVENT_RECEIVED
-            return "EVENT_RECEIVED"
+        # get_logger().info(f'{message_user=}')
 
-        raise Exception('Erro no app.generate_message')
-    except Exception as exception:
-        get_logger().error("app.received_message")
-        get_logger().error(exception)
+        process_messages(message_user, number)
+
+        # deve SEMPRE retornar EVENT_RECEIVED
         return "EVENT_RECEIVED"
+    except Exception as e:
+        get_logger().error("Exception - app.received_message")
+        if hasattr(e, 'message'):
+            get_logger().error(e.message)
+        else:
+            get_logger().error(e)
 
+        return "EVENT_RECEIVED"
 @app.route('/healthcheck', methods=['GET'])
 def health_check():
     try:
@@ -61,15 +63,38 @@ def health_check():
     except:
         return "", 500
 
+def process_messages(text, number):
+    try: 
+        greeting = ['olá', 'oi', 'opa', 'oie']
+        thanking = ['obrigado', 'agradecido', 'brigado', 'valeu']
 
-def generate_message(text, number):
-    try:
-        data = util.text_message(number, text)
+        if text.lower() in greeting:
+            get_logger().info('entre no process_messages')
+
+            data = util.text_message("Olá, como você está?", number)
+
+        elif text.lower() in thanking:
+            data = util.text_message("Obrigado por entrar em contato conosco!", number)
+        
+        else:
+            data = util.text_message("Desculpe, não te entendi!", number)    
 
         whatsapp_service.send_message_whatsapp(data)
-    except Exception as exception:
-        get_logger().error("app.generate_message")
-        get_logger().error(exception)
+    except Exception as e:
+        get_logger().error("Exception - app.received_message")
+        if hasattr(e, 'message'):
+            get_logger().error(e.message)
+        else:
+            get_logger().error(e)     
+
+# def generate_message(text, number):
+#     try:
+#         data = util.text_message(number, text)
+
+#         whatsapp_service.send_message_whatsapp(data)
+#     except Exception as exception:
+#         get_logger().error("app.generate_message")
+#         get_logger().error(exception)
 
 
 if __name__ == '__main__':

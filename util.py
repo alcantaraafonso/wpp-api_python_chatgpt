@@ -1,3 +1,4 @@
+
 def get_text_message(message):
     return message['text']['body']
 
@@ -19,7 +20,7 @@ def get_user_message(message_type, message):
 
     return 'sem mensagem'
 
-def text_message(number, text):
+def text_message(text, number):
     return {
             "messaging_product": "whatsapp",    
             "recipient_type": "individual",

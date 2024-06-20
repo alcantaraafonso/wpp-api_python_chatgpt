@@ -3,7 +3,7 @@ import json
 from util_log import get_logger
 
 def send_message_whatsapp(data):
-    try:
+    try: 
         token = "EAAGdQac3cVEBO8DdN9n8a6fYorXjAMybVgC5Vf5WC6fXkyvxsq2R6xhCc7M4fb0QmfzybZCXWvXNsPjpNqsTOuS7ggJLUHdqHo3wba18SKzZC5REdriKROsGpiZAaibsUOy0ZCyq0YZBuCetFCh1vks6k8ZCZAJmJQrJKVdqRhVfxkvPBIoXNdbj0UOOZAxesrJm"
         api_url = "https://graph.facebook.com/v20.0/272679455939616/messages"
 
@@ -16,8 +16,6 @@ def send_message_whatsapp(data):
         if response.status_code == 200:
             return True
         
-        return False
-    except Exception as exception:
-        get_logger().error("whatsapp_service.send_message_whatsapp")
-        get_logger().error(exception)
-        return False
+    except Exception as e:
+        raise e
+        
